@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Console Grabby</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 220px;
+      padding: 24px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f0f12;
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #888;
+      text-transform: uppercase;
+    }
+
+    #grab-btn {
+      width: 100%;
+      padding: 14px 0;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.1s ease, background 0.2s ease;
+      letter-spacing: 0.3px;
+      outline: none;
+    }
+
+    #grab-btn:active {
+      transform: scale(0.96);
+    }
+
+    #grab-btn.state-off {
+      background: #1e1e28;
+      color: #f0f0f0;
+      border: 1.5px solid #333;
+    }
+
+    #grab-btn.state-on {
+      background: #2a1f3d;
+      color: #c084fc;
+      border: 1.5px solid #7c3aed;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    #grab-btn.state-copied {
+      background: #1a2e1a;
+      color: #4ade80;
+      border: 1.5px solid #16a34a;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.3); }
+      50% { box-shadow: 0 0 0 6px rgba(124, 58, 237, 0); }
+    }
+
+    #status {
+      font-size: 11px;
+      color: #555;
+      text-align: center;
+      min-height: 16px;
+      transition: color 0.2s;
+    }
+
+    #status.active {
+      color: #c084fc;
+    }
+
+    #status.success {
+      color: #4ade80;
+    }
+
+    #status.warn {
+      color: #fb923c;
+    }
+
+    #log-count {
+      font-size: 10px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <span class="title">Console Grabby</span>
+
+  <button id="grab-btn" class="state-off">🖐️ Grab</button>
+
+  <span id="status">Click to start capturing</span>
+  <span id="log-count"></span>
+
+  <script src="popup.js"></script>
+</body>
+</html>
